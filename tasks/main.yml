@@ -1,7 +1,10 @@
 ---
 # tasks file for juliovp01.rhel-kvm-install
 # tasks files on main.yml as include arguments
-- include: registration.yml
+# - include: registration.yml
+- set_fact:
+    vm_name: "rhel-7-{{ 10000 | random }}"
+    cacheable: true
 - include: install.yml
-- include: template.yml
+  # - include: template.yml
 - include: create_vm.yml

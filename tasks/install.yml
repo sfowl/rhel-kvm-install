@@ -3,9 +3,7 @@
 - name: installing | installing the required software
   become: yes
   yum:
-    name: "{{ item }}"
-    state: latest
-  with_items:
+    name: 
     - libguestfs-tools
     - libvirt
     - qemu-kvm
@@ -15,12 +13,13 @@
     - xauth
     - virt-viewer
     - libguestfs-xfs
+    state: latest
   notify: enable_service
 
-- name: installing | installing rhel-guest-image for templates
-  become: yes
-  yum:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - rhel-guest-image-7
+  # - name: installing | installing rhel-guest-image for templates
+  #   become: yes
+  #   yum:
+  #     name: "{{ item }}"
+  #     state: latest
+  #   with_items:
+  #     - rhel-guest-image-7
