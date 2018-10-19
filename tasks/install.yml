@@ -2,8 +2,9 @@
 #Installing the Software
 - name: installing | installing the required software
   become: yes
+  when: (ansible_os_family == 'RHEL')
   yum:
-    name: 
+    name:
     - libguestfs-tools
     - libvirt
     - qemu-kvm
@@ -11,6 +12,21 @@
     - virt-install
     - xorg-x11-apps
     - xauth
+    - virt-viewer
+    - libguestfs-xfs
+    state: latest
+  notify: enable_service
+
+- name: installing | installing the required software
+  become: yes
+  when: (ansible_os_family == 'Debian')
+  apt:
+    name:
+    - libguestfs-tools
+    - libvirt-daemon
+    - qemu-kvm
+    - virt-manager
+    - virtinst
     - virt-viewer
     - libguestfs-xfs
     state: latest

@@ -1,5 +1,4 @@
 ---
-## Role to deploy Satellite 6.1
 - name: MAIN TASK | Installing and Configuring KVM Host
   hosts: hypervisor
   become: yes
