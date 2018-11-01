@@ -1,0 +1,7 @@
+#cloud-config
+users:
+  - name: test
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    groups: sudo
+    ssh-authorized-keys:
+      - ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBE3yBaditZTrWltp+ldMzfF4/Vex0pnDLR2TAB01gfv0r2QPdfT0g37+6Eq4ZEtdzzX4VJGfnzCVMc2hA5YAHeM= sfowler@redhat.com

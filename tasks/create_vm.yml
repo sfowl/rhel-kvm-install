@@ -26,7 +26,7 @@
 # - name: prepare | set ifcfg-eth0 file
   # become: yes
   # shell: virt-customize -a {{ vm_directory}}/{{ vm_name }}.qcow2 --run-command 'echo {{ item }}  >> /etc/sysconfig/network-scripts/ifcfg-eth0 '
-  # with_items: 
+  # with_items:
   #   - DEVICE="eth0"
   #   - ONBOOT="yes"
   #   - TYPE="Ethernet"
@@ -41,5 +41,5 @@
 
 - name: prepare | boot vm
   become: yes
-  shell: virt-install --ram {{ memory_size }}  --vcpus {{ cpu_count }}  --os-variant rhel7 --disk path={{ vm_directory}}/{{ vm_name }}.qcow2,device=disk,bus=virtio,format=qcow2,size={{ vm_size }} --import --noautoconsole --vnc --bridge {{ bridge_name }} --name {{ vm_name }}
+  shell: virt-install --ram {{ memory_size }} --vcpus {{ cpu_count }} --os-variant rhel7 --disk path={{ vm_directory}}/{{ vm_name }}.qcow2,device=disk,bus=virtio,format=qcow2,size={{ vm_size }} --disk path={{ vm_directory }}/{{ cloud_init_iso }},device=cdrom --import --noautoconsole --vnc --bridge {{ bridge_name }} --name {{ vm_name }}
   when: create_vm  == "yes"

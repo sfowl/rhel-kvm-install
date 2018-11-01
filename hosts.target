@@ -1,2 +1,3 @@
 [hypervisor]
-localhost
+# localhost
+purina.usersys.redhat.com
