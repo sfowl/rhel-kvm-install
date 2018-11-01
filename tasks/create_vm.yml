@@ -11,11 +11,18 @@
   shell: qemu-img create -f qcow2 -b {{ vm_directory }}/{{ template_name }}.qcow2 {{ vm_directory }}/{{ vm_name }}.qcow2
   when: create_vm  == "yes"
 
-# - name: prepare | set hostname
-  # become: yes
-  # command: virt-customize -a {{ vm_directory}}/{{ vm_name }}.qcow2 --run-command 'hostnamectl set-hostname {{ hostname_full }}'
-  # when: create_vm  == "yes"
-  # ignore_errors: yes
+- name: cloud-init | create meta-data
+  template: 
+    src: meta-data
+    dest: "{{ ci_metadata }}"
+
+- name: cloud-init | create user-data
+  template: 
+    src: user-data
+    dest: "{{ ci_userdata }}"
+
+- name: cloud-init | create iso
+  shell: genisoimage -output {{ ci_iso }} -volid cidata -joliet -rock {{ ci_userdata }} {{ ci_metadata }}
 
 # - name: prepare | clear ifcfg-eth0 file
 # become: # yes
@@ -41,5 +48,5 @@
 
 - name: prepare | boot vm
   become: yes
-  shell: virt-install --ram {{ memory_size }} --vcpus {{ cpu_count }} --os-variant rhel7 --disk path={{ vm_directory}}/{{ vm_name }}.qcow2,device=disk,bus=virtio,format=qcow2,size={{ vm_size }} --disk path={{ vm_directory }}/{{ cloud_init_iso }},device=cdrom --import --noautoconsole --vnc --bridge {{ bridge_name }} --name {{ vm_name }}
+  shell: virt-install --ram {{ memory_size }} --vcpus {{ cpu_count }} --os-variant rhel7 --disk path={{ vm_directory}}/{{ vm_name }}.qcow2,device=disk,bus=virtio,format=qcow2,size={{ vm_size }} --disk path={{ ci_iso }},device=cdrom --import --noautoconsole --vnc --bridge {{ bridge_name }} --name {{ vm_name }}
   when: create_vm  == "yes"

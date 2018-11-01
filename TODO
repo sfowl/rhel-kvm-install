@@ -1,2 +1,4 @@
+dynamic ssh key install
 ansible-ise cloud-init iso
 get qcow2 image from URL rather than local disk
+use ansible virt module rather than shell scripts
