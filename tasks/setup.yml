@@ -1,0 +1,7 @@
+---
+
+- name: ssh | Get SSH public key
+  local_action: shell cat ~/.ssh/*.pub
+  run_once: true
+  register: ssh_cmd
+  become: no

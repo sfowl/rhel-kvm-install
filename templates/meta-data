@@ -1,2 +1,2 @@
-instance-id: foobar
-local-hostname: foobar
+instance-id: {{ vm_name }}
+local-hostname: {{ vm_name }}

@@ -6,7 +6,7 @@
 template_name: "rhel-server-7-template"
 template_size: "10G"
 vm_size: "10"
-vm_directory: "/home/libvirt-qemu/"
+vm_directory: "/home/qemu/images/"
 ci_iso: "/tmp/cloud-init.iso"
 ci_metadata: "/tmp/meta-data"
 ci_userdata: "/tmp/user-data"
