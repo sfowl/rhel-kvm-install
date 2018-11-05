@@ -5,3 +5,34 @@
   run_once: true
   register: ssh_cmd
   become: no
+
+- name: DNS | libvirt network XML
+  shell: virsh net-dumpxml {{ libvirt_network }} > /tmp/{{ libvirt_network }}
+  become: yes
+
+- name: DNS | Enable DNS in libvirt network XML
+  xml: 
+    path: /tmp/{{ libvirt_network }}
+    xpath: /network/domain
+    attribute: name
+    value: "{{ domain_name }}"
+
+- name: DNS | Enable localOnly DNS in libvirt network XML
+  xml: 
+    path: /tmp/{{ libvirt_network }}
+    xpath: /network/domain
+    attribute: localOnly
+    value: "yes"
+
+- name: DNS | Apply new libvirt network XML
+  shell: virsh net-define /tmp/{{ libvirt_network }}
+
+- name: DNS | Enable DNS server on hypervisor
+  template: 
+    src: localdns.conf
+    dest: /etc/NetworkManager/conf.d/localdns.conf
+
+- name: DNS | Point to DNS server on hypervisor
+  template: 
+    src: libvirt_dnsmasq.conf
+    dest: /etc/NetworkManager/conf.d/libvirt_dnsmasq.conf
