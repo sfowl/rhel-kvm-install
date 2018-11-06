@@ -35,4 +35,4 @@
 - name: DNS | Point to DNS server on hypervisor
   template: 
     src: libvirt_dnsmasq.conf
-    dest: /etc/NetworkManager/conf.d/libvirt_dnsmasq.conf
+    dest: /etc/NetworkManager/dnsmasq.d/libvirt_dnsmasq.conf
