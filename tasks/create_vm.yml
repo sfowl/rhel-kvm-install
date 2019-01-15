@@ -50,3 +50,7 @@
   become: yes
   shell: virt-install --ram {{ memory_size }} --vcpus {{ cpu_count }} --os-variant rhel7 --disk path={{ vm_directory}}/{{ vm_name }}.qcow2,device=disk,bus=virtio,format=qcow2,size={{ vm_size }} --disk path={{ ci_iso }},device=cdrom --import --noautoconsole --vnc --bridge {{ bridge_name }} --name {{ vm_name }}
   when: create_vm  == "yes"
+
+- add_host:
+    name: "{{ vm_name }}.{{ domain_name }}"
+    groups: guests
