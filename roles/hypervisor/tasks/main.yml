@@ -1,7 +1,7 @@
 ---
 # tasks file for juliovp01.rhel-kvm-install
 # tasks files on main.yml as include arguments
-- include: setup.yml
+- import_tasks: setup.yml
 
 - set_fact:
     ssh_pubkey: "{{ ssh_cmd.stdout }}"
@@ -10,6 +10,6 @@
     vm_name: "rhel-7-{{ range(1000, 9999) | random }}"
     cacheable: true
 
-- include: install.yml
+- import_tasks: install.yml
   # - include: template.yml
-- include: create_vm.yml
+- import_tasks: create_vm.yml

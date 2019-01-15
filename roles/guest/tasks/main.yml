@@ -1,4 +1,10 @@
 ---
+  - name: Wait until reachable
+    wait_for_connection:
+
+  - name: Gather facts for first time
+    setup:
+
   - name: register and subscribe to RHN
     redhat_subscription:
       state: present

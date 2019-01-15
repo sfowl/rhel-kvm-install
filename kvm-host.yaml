@@ -3,25 +3,17 @@
 - name: MAIN TASK | Installing and Configuring KVM Host
   hosts: hypervisor
   become: yes
-  vars_files:
-    - vars/main.yml
-  tasks:
-    - include: tasks/main.yml
-  handlers:
-    - include: handlers/main.yml
+  roles:
+    - hypervisor
 
 - name: CONFIGURE GUEST
   hosts: guests
   gather_facts: no
+  roles:
+    - guest
   vars_prompt:
     - name: "rhn_user"
       prompt: "Enter your RHN username: "
       private: no
     - name: "rhn_pass"
       prompt: "Enter your RHN password: "
-  tasks:
-    - name: Wait until reachable
-      wait_for_connection:
-    - name: Gather facts for first time
-      setup:
-    - include: tasks/register.yml
