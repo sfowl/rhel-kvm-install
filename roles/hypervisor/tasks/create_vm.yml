@@ -5,6 +5,9 @@
 # become: yes
 # shell: virsh iface-bridge {{ bridge_interface }} {{ bridge_name }}
 # ignore_errors: yes
+- set_fact:
+    vm_name: "rhel-7-{{ range(1000, 9999) | random }}"
+    cacheable: true
 
 - name: prepare | create virtual machine from template file
   become: yes

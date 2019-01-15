@@ -1,4 +1,12 @@
 ---
+#  vars_prompt:
+#    - name: "rhn_user"
+#      prompt: "Enter your RHN username: "
+#      private: no
+#    - name: "rhn_pass"
+#      prompt: "Enter your RHN password: "
+#  hosts: all
+#  gather_facts: False
 
 - name: MAIN TASK | Installing and Configuring KVM Host
   hosts: hypervisor
@@ -8,9 +16,10 @@
 
 - name: CONFIGURE GUEST
   hosts: guests
-  gather_facts: no
+  gather_facts: False
   roles:
     - guest
+  strategy: free
   vars_prompt:
     - name: "rhn_user"
       prompt: "Enter your RHN username: "
