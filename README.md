@@ -60,7 +60,7 @@ How to run the playbook
 
 ** Run the playbook
 
-ansible-playbook -i hosts.target kvm-host.yaml
+ansible-playbook -i hosts.target site.yaml -K
 
 License
 -------
