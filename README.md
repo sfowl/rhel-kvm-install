@@ -60,7 +60,11 @@ How to run the playbook
 
 ** Run the playbook
 
-ansible-playbook -i hosts.target site.yaml -K
+ansible-playbook -i hosts.target site.yml -K
+
+** RHEL 8
+
+ansible-playbook -i hosts.target site.yml -K -e rhel_version=8
 
 License
 -------
