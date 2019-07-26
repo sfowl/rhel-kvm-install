@@ -1,7 +1,7 @@
 ---
 
 - name: ssh | Get SSH public key
-  local_action: shell cat ~/.ssh/*.pub
+  local_action: shell cat {{ ssh_pkey }}
   run_once: true
   register: ssh_cmd
   become: no
