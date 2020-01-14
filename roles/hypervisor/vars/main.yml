@@ -6,7 +6,7 @@
 template_name: "rhel-server-7-template"
 vm_size: "20"
 vm_directory: "/home/qemu/"
-ci_iso: "/tmp/cloud-init-{{ vm_name }}.iso"
+ci_iso: "{{ vm_directory }}/cloud-init-{{ vm_name }}.iso"
 ci_metadata: "/tmp/meta-data"
 ci_userdata: "/tmp/user-data"
 root_password: "1234qwer!!"
