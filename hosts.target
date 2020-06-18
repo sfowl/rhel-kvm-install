@@ -1,6 +1,6 @@
 [hypervisor]
-# localhost
-purina.usersys.redhat.com
+localhost  ansible_connection=local
+# purina.usersys.redhat.com
 
 [guests]
 

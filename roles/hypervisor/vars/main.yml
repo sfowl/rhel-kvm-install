@@ -21,5 +21,5 @@ cpu_count: "1"
 # bridge_interface: "virbr0-nic"
 bridge_name: "virbr0"
 libvirt_network: "default"
-number_vms: 3
-
+number_vms: 1
+ssh_pkey: /home/path/to/public_ssh_key
